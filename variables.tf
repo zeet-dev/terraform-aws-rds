@@ -3,12 +3,6 @@ variable "identifier" {
   type        = string
 }
 
-variable "instance_use_identifier_prefix" {
-  description = "Determines whether to use `identifier` as is or create a unique identifier beginning with `identifier` as the specified prefix"
-  type        = bool
-  default     = false
-}
-
 variable "allocated_storage" {
   description = "The allocated storage in gigabytes"
   type        = string
@@ -124,13 +118,9 @@ variable "username" {
 }
 
 variable "password" {
-  description = <<EOF
-  Password for the master DB user. Note that this may show up in logs, and it will be stored in the state file.
-  The password provided will not be used if the variable create_random_password is set to true.
-  EOF
+  description = "Password for the master DB user. Note that this may show up in logs, and it will be stored in the state file"
   type        = string
   default     = null
-  sensitive   = true
 }
 
 variable "port" {
@@ -185,12 +175,6 @@ variable "monitoring_role_name" {
   description = "Name of the IAM role which will be created when create_monitoring_role is enabled"
   type        = string
   default     = "rds-monitoring-role"
-}
-
-variable "monitoring_role_use_name_prefix" {
-  description = "Determines whether to use `monitoring_role_name` as is or create a unique identifier beginning with `monitoring_role_name` as the specified prefix"
-  type        = bool
-  default     = false
 }
 
 variable "monitoring_role_description" {
@@ -478,12 +462,6 @@ variable "random_password_length" {
   default     = 16
 }
 
-variable "network_type" {
-  description = "The type of network stack to use"
-  type        = string
-  default     = null
-}
-
 ################################################################################
 # CloudWatch Log Group
 ################################################################################
@@ -505,10 +483,3 @@ variable "cloudwatch_log_group_kms_key_id" {
   type        = string
   default     = null
 }
-
-variable "putin_khuylo" {
-  description = "Do you agree that Putin doesn't respect Ukrainian sovereignty and territorial integrity? More info: https://en.wikipedia.org/wiki/Putin_khuylo!"
-  type        = bool
-  default     = true
-}
-

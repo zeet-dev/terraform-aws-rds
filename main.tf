@@ -11,30 +11,28 @@ module "db" {
   source  = "terraform-aws-modules/rds/aws"
   version = "4.1.3"
 
-  identifier                             = var.identifier
-  instance_use_identifier_prefix         = var.instance_use_identifier_prefix
-  allocated_storage                      = var.allocated_storage
-  storage_type                           = var.storage_type
-  storage_encrypted                      = var.storage_encrypted
-  kms_key_id                             = var.kms_key_id
-  replicate_source_db                    = var.replicate_source_db
-  license_model                          = var.license_model
-  replica_mode                           = var.replica_mode
-  iam_database_authentication_enabled    = var.iam_database_authentication_enabled
-  domain                                 = var.domain
-  domain_iam_role_name                   = var.domain_iam_role_name
-  engine                                 = var.engine
-  engine_version                         = var.engine_version
-  skip_final_snapshot                    = var.skip_final_snapshot
-  snapshot_identifier                    = var.snapshot_identifier
-  copy_tags_to_snapshot                  = var.copy_tags_to_snapshot
-  final_snapshot_identifier_prefix       = var.final_snapshot_identifier_prefix
-  instance_class                         = var.instance_class
-  db_name                                = var.db_name
-  username                               = var.username
-  password                               = var.password
-  port                                   = local.port
-  vpc_security_group_ids                 = local.vpc_security_group_ids
+  identifier                          = var.identifier
+  allocated_storage                   = var.allocated_storage
+  storage_type                        = var.storage_type
+  storage_encrypted                   = var.storage_encrypted
+  kms_key_id                          = var.kms_key_id
+  replicate_source_db                 = var.replicate_source_db
+  license_model                       = var.license_model
+  replica_mode                        = var.replica_mode
+  iam_database_authentication_enabled = var.iam_database_authentication_enabled
+  domain                              = var.domain
+  domain_iam_role_name                = var.domain_iam_role_name
+  engine                              = var.engine
+  engine_version                      = var.engine_version
+  skip_final_snapshot                 = var.skip_final_snapshot
+  snapshot_identifier                 = var.snapshot_identifier
+  copy_tags_to_snapshot               = var.copy_tags_to_snapshot
+  final_snapshot_identifier_prefix    = var.final_snapshot_identifier_prefix
+  instance_class                      = var.instance_class
+  db_name                             = var.db_name
+  username                            = var.username
+  password                            = var.password
+
   availability_zone                      = var.availability_zone
   multi_az                               = var.multi_az
   iops                                   = var.iops
@@ -42,7 +40,6 @@ module "db" {
   monitoring_interval                    = var.monitoring_interval
   monitoring_role_arn                    = var.monitoring_role_arn
   monitoring_role_name                   = var.monitoring_role_name
-  monitoring_role_use_name_prefix        = var.monitoring_role_use_name_prefix
   monitoring_role_description            = var.monitoring_role_description
   create_monitoring_role                 = var.create_monitoring_role
   allow_major_version_upgrade            = var.allow_major_version_upgrade
@@ -90,10 +87,12 @@ module "db" {
   delete_automated_backups               = var.delete_automated_backups
   create_random_password                 = var.create_random_password
   random_password_length                 = var.random_password_length
-  network_type                           = var.network_type
   create_cloudwatch_log_group            = var.create_cloudwatch_log_group
   cloudwatch_log_group_retention_in_days = var.cloudwatch_log_group_retention_in_days
   cloudwatch_log_group_kms_key_id        = var.cloudwatch_log_group_kms_key_id
+
+  port                   = local.port
+  vpc_security_group_ids = local.vpc_security_group_ids
 }
 
 data "aws_subnet" "db_subnets" {
