@@ -52,8 +52,7 @@ variable "replica_mode" {
 }
 
 variable "iam_database_authentication_enabled" {
-  description = "Specifies whether or not the mappings 
-  of AWS Identity and Access Management (IAM) accounts to database accounts are enabled"
+  description = "Specifies whether or not the mappings of AWS Identity and Access Management (IAM) accounts to database accounts are enabled"
   type        = bool
   default     = false
 }
