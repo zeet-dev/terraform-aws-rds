@@ -96,7 +96,7 @@ module "db" {
 }
 
 data "aws_subnet" "db_subnets" {
-  for_each = data.subnet_ids
+  for_each = var.subnet_ids
   id       = each.value
 }
 
