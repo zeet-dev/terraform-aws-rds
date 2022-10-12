@@ -1,5 +1,5 @@
 locals {
-  port = var.port ? var.port : var.engine == "postgres" ? "5432" : "3306"
+  port = var.port != "" ? var.port : var.engine == "postgres" ? "5432" : "3306"
   vpc_security_group_ids = concat(
     var.vpc_security_group_ids,
     module.security_group_vpc.security_group_id,
@@ -95,13 +95,12 @@ module "db" {
   vpc_security_group_ids = local.vpc_security_group_ids
 }
 
-data "aws_subnet" "db_subnets" {
-  for_each = var.subnet_ids
-  id       = each.value
+data "aws_subnet" "db_subnet" {
+  id = var.subnet_ids[0]
 }
 
 data "aws_vpc" "db_vpc" {
-  id = data.aws_subnet.db_subnets[0].vpc_id
+  id = data.aws_subnet.db_subnet.vpc_id
 }
 
 module "security_group_vpc" {
