@@ -3,7 +3,7 @@ locals {
   vpc_security_group_ids = concat(
     var.vpc_security_group_ids,
     [module.security_group_vpc.security_group_id],
-    var.publicly_accessible ? [module.security_group_public.security_group_id] : []
+    var.publicly_accessible ? [module.security_group_public[0].security_group_id] : []
   )
 }
 
