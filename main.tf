@@ -2,8 +2,8 @@ locals {
   port = var.port != "" ? var.port : var.engine == "postgres" ? "5432" : "3306"
   vpc_security_group_ids = concat(
     var.vpc_security_group_ids,
-    module.security_group_vpc.security_group_id,
-    var.publicly_accessible ? module.security_group_public.security_group_id : []
+    [module.security_group_vpc.security_group_id],
+    var.publicly_accessible ? [module.security_group_public.security_group_id] : []
   )
 }
 
