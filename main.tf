@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.0"
+    }
+  }
+}
+
 locals {
   port = var.port != "" ? var.port : var.engine == "postgres" ? "5432" : "3306"
   vpc_security_group_ids = concat(
