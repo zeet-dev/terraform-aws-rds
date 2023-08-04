@@ -1,5 +1,15 @@
+variable "new_identifier" {
+  description = "The name of the new RDS instance"
+  type        = string
+}
+
+variable "new_snapshot_identifier" {
+  description = "The name of the old RDS snapshot"
+  type        = string
+}
+
 variable "identifier" {
-  description = "The name of the RDS instance"
+  description = "The name of the old RDS instance"
   type        = string
 }
 
